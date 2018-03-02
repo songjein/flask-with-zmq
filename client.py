@@ -34,8 +34,9 @@ def search():
         socket.send (json.dumps(req_to_server).encode())
         # blocked & get the reply
         message = socket.recv()
-        result.append(message)
+        result.append(json.loads(message))
         print ("received reply ", i , "[", message, "]")
 
-    return "".join([r.decode() + "</br>" for r in result])
+    #return json.dumps(result)
+    return "".join([r["result"] + "</br>" for r in result])
 

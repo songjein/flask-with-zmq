@@ -18,5 +18,8 @@ while True:
     print ("Received request: ", message)
     term = json.loads(message)["term"]
     time.sleep(1)
-    socket.send(("뉴스 검색 결과 about %s from %s" % (term, port)).encode())
+    res_to_client = {
+       "result" : "뉴스 검색 결과 about %s from %s" % (term, port)
+        }
+    socket.send(json.dumps(res_to_client).encode())
 
